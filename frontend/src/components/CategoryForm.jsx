@@ -68,7 +68,7 @@ const CategoryForm = () => {
       return;
     }
     try {
-      await api.get(`/category/${id}`);
+      await api.delete(`/category/${id}`);
       setMessage('Category deleted successfully!');
       fetchCategories();
     } catch (error) {

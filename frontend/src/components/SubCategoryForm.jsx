@@ -85,7 +85,7 @@ const SubCategoryForm = () => {
       return;
     }
     try {
-      await api.get(`/subcategory/${id}`);
+      await api.delete(`/subcategory/${id}`);
       setMessage('Subcategory deleted successfully!');
       fetchSubCategories();
     } catch (error) {
