@@ -60,20 +60,20 @@ const PrintReport = () => {
   
       const pdfDoc = await PDFDocument.load(existingPdfBytes);
       const [firstPage] = pdfDoc.getPages();
-      firstPage.setSize(209, 144); // A8 size
+      firstPage.setSize(595, 414); // changed to A5 size- Armaan Siddiqui
   
       const color = rgb(0, 0, 0);
       const boldColor = rgb(0, 0, 0.8);
-      const marginTop = 16;
-      const lineHeight = 3.5;
-      const colSpacing = 100;
-      const fontSizeText = 4;
+      const marginTop = 25;
+      const lineHeight = 18;
+      const colSpacing = 280;
+      const fontSizeText = 11;
       const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
       const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-  
-      let yPosition = 144 - marginTop;
-      const startX = 7;
-      const secondColX = startX + colSpacing;
+
+      let yPosition =  414-90;
+      const startX = 15;
+      const secondColX = 595/2;
   
       // Format date
       const formatDate = (date) => {
@@ -99,7 +99,7 @@ const PrintReport = () => {
         //Added new fields to align with new logic and feature online + cash- Armaan Siddiqui
         // localOrderDetails.paymentMode === 'Online + Cash' && { label: 'Online Paid', value: localOrderDetails.online },
         // localOrderDetails.paymentMode === 'Online + Cash' && { label: 'Cash Paid', value: localOrderDetails.cash },
-        { label: 'Final Payment', value: finalAmount },
+        { label: 'Final Payment', value: finalAmount ,isHighlighted: true },
         { label: 'Payment Mode', value: localOrderDetails.paymentMode },
 
       ].filter(Boolean);

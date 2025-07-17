@@ -18,21 +18,21 @@ const PrintReportModal = ({ isOpen, onClose, orderDetails, doctorDetails }) => {
       const existingPdfBytes = await fetch('/final.pdf').then(res => res.arrayBuffer());
       const pdfDoc = await PDFDocument.load(existingPdfBytes);
       const [firstPage] = pdfDoc.getPages();
-      firstPage.setSize(209, 144); // Armaan Siddiqui: A8 size page
+      firstPage.setSize(595, 414); // Armaan Siddiqui: A8 size page
 
       // Armaan Siddiqui: PDF styling constants
       const color = rgb(0, 0, 0);
       const boldColor = rgb(0, 0, 0.8);
-      const marginTop = 16;
-      const lineHeight = 3.5;
-      const colSpacing = 100;
-      const fontSizeText = 4;
+      const marginTop = 25;
+      const lineHeight = 18;
+      const colSpacing = 280;
+      const fontSizeText = 11;
       const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
       const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
-      let yPosition = 144 - marginTop;
-      const startX = 7;
-      const secondColX = startX + colSpacing;
+      let yPosition =  414-90;
+      const startX = 15;
+      const secondColX = 595/2;
 
       // Armaan Siddiqui: Format createdAt date to DD/MM/YYYY
       const formatDate = (date) => {
@@ -56,7 +56,7 @@ const PrintReportModal = ({ isOpen, onClose, orderDetails, doctorDetails }) => {
         orderDetails.discount > 0 && { label: 'Discount', value: orderDetails.discount },
         // orderDetails.paymentMode === 'Online + Cash' && { label: 'Online Paid', value: orderDetails.online },
         // orderDetails.paymentMode === 'Online + Cash' && { label: 'Cash Paid', value: orderDetails.cash },
-        { label: 'Final Payment', value: finalAmount },
+        { label: 'Final Payment', value: finalAmount ,isHighlighted: true },
         { label: 'Payment Mode', value: orderDetails.paymentMode },
 
       ].filter(Boolean); // Armaan Siddiqui: Remove any falsy/null fields
